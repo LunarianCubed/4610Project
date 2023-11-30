@@ -5,7 +5,7 @@ import Cube from './Cube.js';
 
 export default function NotFound(){
     const L =`
-                　　　,-､　　　　　　　 　　,.-､
+            　　,-､　　　　　　　 　　,.-､
 　　　　　　　 ./:::::＼　　　　　 　 ／::::ヽ
 　　　　　　　/::::::::;ゝ--──-- ､._/:::::::::|
 　　　　　　 /,.-‐''"´ 　　　　　　　　 ＼::::|
