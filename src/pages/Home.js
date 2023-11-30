@@ -6,6 +6,9 @@ import Cube from './Cube.js';
 export default function Home(){
     return (
         <div className = "Home">
+            <h1>Welcome to MyBlog</h1>
+            <h2>Where you can share your thoughts with the world</h2>
+            <h3>Click on the links above to get started</h3>
             {/*<pre>*/}
             {/*    LLLLLLLLLLL                                                                                     iiii                                            ^^^        333333333333333b*/}
             {/*    L:::::::::L                                                                                    i::::i                                          ^:::^      3:::::::::::::::33*/}
