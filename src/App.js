@@ -15,19 +15,19 @@ function App() {
         case"/":
             component = <Home />
             break
-        case"Tags":
+        case"/Tags":
             component = <Tags />
             break
-        case"List":
+        case"/List":
             component = <List />
             break
-        case"Login":
+        case"/Login":
             component = <Login />
             break
-        case"Search":
+        case"/Search":
             component = <Search />
             break
-        case"Comments":
+        case"/Comments":
             component = <Comments />
             break
     }
