@@ -28,15 +28,13 @@ function App() {
     }
     return (
         <>
-        <Navbar />
-        <div className = "App">
-            <pre id="output"></pre>
-            <script src="./Static/Cube.js"></script>
-            {component}
-        </div>
+            <Navbar />
+            <div className = "app">
+                {component}
+            </div>
         </>
 
-  );
+    );
 }
 
 export default App;
