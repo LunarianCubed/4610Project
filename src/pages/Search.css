@@ -16,7 +16,7 @@
     left: 25%;
     border-radius: 10%;
     transform: translate(-50%, -50%);
-    background: #461d7c;
+    background-color: #0f0c29; /* Deep blue */
     padding: 50px 60px 70px;
     text-align: center;
 }
@@ -100,8 +100,8 @@
     display: flex;
     justify-content: space-between;
     flex-basis: 48%;
-    background: #0f0c29; /* Deep blue */
-    color: #7e216c;
+    background: #FDD023;
+    color: #461d7c;
     font-size: x-large;
     display: inline-block;
     height: 40px;
