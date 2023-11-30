@@ -76,7 +76,7 @@ app.post("/login", (req ,res) =>{
     const email = req.body.email;
     const password = req.body.password;
 
-    db.run("SELECT * FROM users Where email = ? AND password = ?", [email, password],
+    db.run("SELECT id FROM users Where email = ? AND password = ?", [email, password],
         (err, result) => {
             if (err){
                 res.status(500).send({err: err});
@@ -168,6 +168,25 @@ app.get("/articles/:id/comments", (req, res) => {
             res.json({ data: rows });
         }
     );
+});
+
+
+app.get("/comments/:user_id", (req, res) => {
+    const { user_id } = req.params;
+
+    db.all(
+        "SELECT * FROM comments WHERE user_id = ? ORDER BY id DESC",
+        [user_id],
+        (err, rows) => {
+            if (err) {
+                res.status(500).json({ error: err.message });
+                return;
+            }
+
+            res.json({ data: rows });
+        }
+    );
+
 });
 
 

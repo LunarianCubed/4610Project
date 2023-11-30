@@ -1,7 +1,7 @@
 
 
 .nav{
-    background-color: #222436;
+    background-color: #11173f;
     color: #c8d3f5;
     display: flex;
     justify-content: space-between;
@@ -18,7 +18,7 @@
 }
 
 .nav a{
-    color: #c8d3f5;
+    color: #1b0379;
     text-decoration: none;
     height: 100%;
     display: flex;
