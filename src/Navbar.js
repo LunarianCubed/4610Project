@@ -1,7 +1,7 @@
 import "./App.css";
 export default function NavBar(){
     return( <nav className="nav">
-        <a href = "/" className="Home">Tiger Tutors</a>
+        <a href = "/" className="Home">🌕^3</a>
         <ul>
             <CustomLink href="/Article List">Article List</CustomLink>
             <CustomLink href="/Tags">Tags</CustomLink>
