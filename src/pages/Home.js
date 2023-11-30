@@ -7,7 +7,7 @@ export default function Home(){
     return (
     <div className = "Home">
         <div className = "App">
-            <p1>
+            <pre>
                 LLLLLLLLLLL                                                                                     iiii                                            ^^^        333333333333333
                 L:::::::::L                                                                                    i::::i                                          ^:::^      3:::::::::::::::33
                 L:::::::::L                                                                                     iiii                                          ^:::::^     3::::::33333::::::3
@@ -24,7 +24,7 @@ export default function Home(){
                 L::::::::::::::::::::::L u:::::::::::::::un::::n    n::::na:::::aaaa::::::a r:::::r           i::::::ia:::::aaaa::::::a  n::::n    n::::n                 3::::::33333::::::3
                 L::::::::::::::::::::::L  uu::::::::uu:::un::::n    n::::n a::::::::::aa:::ar:::::r           i::::::i a::::::::::aa:::a n::::n    n::::n                 3:::::::::::::::33
                 LLLLLLLLLLLLLLLLLLLLLLLL    uuuuuuuu  uuuunnnnnn    nnnnnn  aaaaaaaaaa  aaaarrrrrrr           iiiiiiii  aaaaaaaaaa  aaaa nnnnnn    nnnnnn                  333333333333333
-            </p1>
+            </pre>
             <pre id="output"></pre>
             <script src="../Static/Cube.js"></script>
         </div>
