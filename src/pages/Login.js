@@ -9,9 +9,6 @@ function App() {
     const [nameReg, setNameReg] = useState("");
     const [emailReg, setEmailReg] = useState("");
     const [passwordReg, setPasswordReg] = useState("");
-    const [degreeReg, setDegreeReg] = useState("");
-    const [avaliabilityReg, setAvaliabilityReg] = useState("");
-    const [userReg, setUserReg] = useState("");
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -35,11 +32,13 @@ function App() {
             email: email,
             password: password,
         }).then((response) => {
+
             if (response.data.message){
                 setLoginStatus(response.data.message)
             } else {
                 setLoginStatus(response.data[0].email)
                 console.log(response.data)
+                //remove location to see the data and user being displayed on login
                 window.location.assign("/Profile")
             }
         });

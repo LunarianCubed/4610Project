@@ -27,6 +27,7 @@ function App() {
             component = <Home />
             break
     }
+
     return (
         <>
             <Navbar />
