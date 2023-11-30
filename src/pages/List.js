@@ -35,3 +35,6 @@ export default function List(){
         </div>
     )
 }
+
+
+export default List;

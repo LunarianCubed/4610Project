@@ -21,7 +21,7 @@ function SearchPage() {
     };
 
     return (
-        <div>
+        <div className='Search'>
             <input
                 type="text"
                 placeholder="Enter search term..."
