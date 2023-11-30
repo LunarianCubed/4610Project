@@ -7,7 +7,7 @@ import SearchResults from "./SearchResults";
 
 
 //search page
-function SearchPage() {
+export default function Search() {
     const [searchTerm, setSearchTerm] = useState("");
     const [searchResult, setSearchResult] = useState([]);
 
