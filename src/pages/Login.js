@@ -24,9 +24,6 @@ function App() {
             name: nameReg,
             email: emailReg,
             password: passwordReg,
-            degree: degreeReg,
-            avaliability: avaliabilityReg,
-            user: userReg,
         }).then((response) => {
             console.log(response);
             window.location.assign("/Profile")
@@ -38,13 +35,11 @@ function App() {
             email: email,
             password: password,
         }).then((response) => {
-
             if (response.data.message){
                 setLoginStatus(response.data.message)
             } else {
                 setLoginStatus(response.data[0].email)
                 console.log(response.data)
-                //remove location to see the data and user being displayed on login
                 window.location.assign("/Profile")
             }
         });
@@ -72,22 +67,6 @@ function App() {
                        onChange={(e) => {
                            setPasswordReg(e.target.value);
                        } } />
-
-                <input type="text" placeholder="Degree"
-                       onChange={(e) => {
-                           setDegreeReg(e.target.value);
-                       } } />
-
-                <input type="text" placeholder="Avaliability (Ex: M,T)"
-                       onChange={(e) => {
-                           setAvaliabilityReg(e.target.value);
-                       } } />
-
-                <input type="text" placeholder="Student or Tutor"
-                       onChange={(e) => {
-                           setUserReg(e.target.value);
-                       } } />
-
                 <button onClick={register}> Register </button>
             </div>
 
