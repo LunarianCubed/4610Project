@@ -1,6 +1,6 @@
 import React, {useEffect, useRef} from 'react';
 
-function Cube(){
+function Cube() {
     const output = useRef(null)
 
     let A = 0, B = 0, C = 0;
@@ -107,7 +107,7 @@ function Cube(){
     }, []);
 
     return(
-        <React.Fragment>{output}</React.Fragment>
+        <pre ref={output}></pre>
     )
 }
 
