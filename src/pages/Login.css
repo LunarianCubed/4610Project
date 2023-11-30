@@ -16,7 +16,7 @@
     left: 25%;
     border-radius: 10%;
     transform: translate(-50%, -50%);
-    background: #461d7c;
+    background: #371365;
     padding: 50px 60px 70px;
     text-align: center;
 }
@@ -58,8 +58,8 @@
     display: flex;
     justify-content: space-between;
     flex-basis: 48%;
-    background: #FDD023;
-    color: #461d7c;
+    background: #ad23fd;
+    color: #18356b;
     font-size: x-large;
     display: inline-block;
     height: 40px;
@@ -80,7 +80,7 @@
     left: 75%;
     border-radius: 10%;
     transform: translate(-50%, -50%);
-    background: #461d7c;
+    background: #5f1575;
     padding: 50px 60px 70px;
     text-align: center;
 }
