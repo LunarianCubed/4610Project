@@ -1,6 +1,6 @@
 import React from 'react';
 import './alignPages.css';
-import './Messages.css';
+import './Comments.css';
 
 
 

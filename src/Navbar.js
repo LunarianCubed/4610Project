@@ -3,9 +3,11 @@ export default function NavBar(){
     return( <nav className="nav">
         <a href = "/" className="Home">Tiger Tutors</a>
         <ul>
-            <CustomLink href="/ArticleList">Article List</CustomLink>
+            <CustomLink href="/Article List">Article List</CustomLink>
             <CustomLink href="/Tags">Tags</CustomLink>
-            <CustomLink href="/About">About</CustomLink>
+            <CustomLink href="/Search">Search</CustomLink>
+            <CustomLink href="/Comments">Comments</CustomLink>
+            <CustomLink href="/Login">Login</CustomLink>
         </ul>
     </nav>
     )
