@@ -26,7 +26,9 @@ export default function Home(){
     return (
         <div className = "Home">
             <div>
+                <pre>
                 <React.Fragment>{L}</React.Fragment>
+                </pre>
                 <Cube />
             </div>
         </div>
