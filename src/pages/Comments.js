@@ -14,6 +14,7 @@ export default function Comments(){
 
     const fetchUserComments = async () => {
         try {
+            const userId = localStorage.getItem('user');
             const response = await axios.get(`http://localhost:3001/comments/${userId}`);
             setUserComments(response.data.data);
         } catch (error) {

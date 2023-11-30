@@ -34,11 +34,12 @@ function App() {
         }).then((response) => {
             if (response.data.message){
                 setLoginStatus(response.data.message)
+
             } else {
                 setLoginStatus(response.data[0].email)
+                sessionStorage.setItem("user", response.data[0].email)
                 console.log(response.data)
-                //remove location to see the data and user being displayed on login
-                window.location.assign("/Profile")
+                window.location.assign("/Comments")
             }
         });
     }
