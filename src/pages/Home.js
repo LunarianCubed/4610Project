@@ -2,7 +2,6 @@ import './Home.css';
 import React from 'react';
 import './alignPages.css';
 import Cube from './Cube.js';
-import {ReactComponent} from "*.svg";
 
 export default function Home(){
     const L =`
