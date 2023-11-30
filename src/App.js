@@ -4,7 +4,6 @@ import Navbar from "./Navbar";
 import Comments from "./pages/Comments";
 import Home from './pages/Home';
 import List from "./pages/List";
-import "./Static/html/Cube.html";
 
 document.body.style.background = '#222436';
 
@@ -31,10 +30,8 @@ function App() {
         <>
         <Navbar />
         <div className = "App">
-            <iframe
-                src="/Static/html/Cube.html"
-                title="Cube">
-            </iframe>
+            <pre id="output"></pre>
+            <script src="./Static/Cube.js"></script>
             {component}
         </div>
         </>
