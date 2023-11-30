@@ -1,9 +1,11 @@
 import './App.css';
 import React from 'react';
 import Navbar from "./Navbar";
-import Comments from "./pages/Comments";
 import Home from './pages/Home';
+import Comments from "./pages/Comments";
 import List from "./pages/List";
+import Tags from "./pages/Tags";
+import Login from "./pages/Login";
 
 document.body.style.background = '#222436';
 
@@ -33,7 +35,6 @@ function App() {
                 {component}
             </div>
         </>
-
     );
 }
 

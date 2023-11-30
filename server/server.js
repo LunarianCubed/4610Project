@@ -19,6 +19,7 @@ db.serialize(() =>{
         );
             CREATE TABLE IF NOT EXISTS articles(
             id INTEGER PRIMARY KEY AUTOINCREMENT,
+            date DATE,
             title TEXT,
             content TEXT
         );
@@ -81,6 +82,17 @@ app.get("/search", (req, res) => {
     const query = `%${q}%`;
 
     db.all("SELECT * FROM articles WHERE title LIKE ?", [query], (err, rows) => {
+        if (err) {
+            res.status(500).json({ error: err.message });
+            return;
+        }
+
+        res.json({ data: rows });
+    });
+});
+
+app.get("/articles", (req, res) => {
+    db.all("SELECT title, date FROM articles ORDER BY date DESC", (err, rows) => {
         if (err) {
             res.status(500).json({ error: err.message });
             return;
