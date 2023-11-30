@@ -17,20 +17,38 @@ db.serialize(() =>{
                                             email TEXT,
                                             password TEXT
         );
+    `);
+    db.run(`
         CREATE TABLE IF NOT EXISTS articles(
                                                id INTEGER PRIMARY KEY AUTOINCREMENT,
                                                date DATE,
                                                title TEXT,
                                                content TEXT
         );
+    `);
+    db.run(`
         CREATE TABLE IF NOT EXISTS comments(
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            user_id INTEGER,
-            article_id INTEGER,
-            content TEXT,
-            FOREIGN KEY(user_id) REFERENCES users(id),
-            FOREIGN KEY(article_id) REFERENCES articles(id),
-        )
+                                               id INTEGER PRIMARY KEY AUTOINCREMENT,
+                                               user_id INTEGER,
+                                               article_id INTEGER,
+                                               content TEXT,
+                                               FOREIGN KEY(user_id) REFERENCES users(id),
+                                               FOREIGN KEY(article_id) REFERENCES articles(id),
+        );
+    `);
+    db.run(`
+        CREATE TABLE IF NOT EXISTS tags(
+                                           id INTEGER PRIMARY KEY AUTOINCREMENT,
+                                           name TEXT
+        );
+    `);
+    db.run(`
+        CREATE TABLE IF NOT EXISTS article_tags(
+                                                   article_id INTEGER,
+                                                   tag_id INTEGER,
+                                                   FOREIGN KEY(article_id) REFERENCES articles(id),
+                                                   FOREIGN KEY(tag_id) REFERENCES tags(id),
+        );
     `);
 });
 
@@ -108,6 +126,48 @@ app.get("/articles", (req, res) => {
 
         res.json({ data: rows });
     });
+});
+
+
+app.get("/articles/:id", (req, res) => {
+    const { id } = req.params;
+
+    db.get("SELECT * FROM articles WHERE id = ?", [id], (err, row) => {
+        if (err) {
+            res.status(500).json({ error: err.message });
+            return;
+        }
+
+        res.json({ data: row });
+    });
+});
+
+app.get("/TagList", (req, res) => {
+    db.get("SELECT * FROM tags", (err, row) => {
+        if (err) {
+            res.status(500).json({ error: err.message });
+            return;
+        }
+
+        res.json({ data: row });
+    });
+});
+
+app.get("/articles/:id/comments", (req, res) => {
+    const { id } = req.params;
+
+    db.all(
+        "SELECT * FROM comments WHERE article_id = ? ORDER BY id DESC",
+        [id],
+        (err, rows) => {
+            if (err) {
+                res.status(500).json({ error: err.message });
+                return;
+            }
+
+            res.json({ data: rows });
+        }
+    );
 });
 
 
