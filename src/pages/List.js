@@ -5,7 +5,7 @@ import axios from "axios";
 
 
 
-export default function Messages(){
+export default function List(){
     const [articles, setArticles] = React.useState([])
 
     useEffect(() => {

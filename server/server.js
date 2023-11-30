@@ -12,17 +12,25 @@ const db = new sql.Database("./Bolg.db");
 db.serialize(() =>{
     db.run(`
         CREATE TABLE IF NOT EXISTS users(
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            name TEXT,
-            email TEXT,
-            password TEXT
+                                            id INTEGER PRIMARY KEY AUTOINCREMENT,
+                                            name TEXT,
+                                            email TEXT,
+                                            password TEXT
         );
-            CREATE TABLE IF NOT EXISTS articles(
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            date DATE,
-            title TEXT,
-            content TEXT
+        CREATE TABLE IF NOT EXISTS articles(
+                                               id INTEGER PRIMARY KEY AUTOINCREMENT,
+                                               date DATE,
+                                               title TEXT,
+                                               content TEXT
         );
+        CREATE TABLE IF NOT EXISTS comments(
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            user_id INTEGER,
+            article_id INTEGER,
+            content TEXT,
+            FOREIGN KEY(user_id) REFERENCES users(id),
+            FOREIGN KEY(article_id) REFERENCES articles(id),
+        )
     `);
 });
 
