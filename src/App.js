@@ -1,11 +1,12 @@
 import './App.css';
 import React from 'react';
+
 import Navbar from "./Navbar";
+import Login from "./pages/Login";
 import Home from './pages/Home';
 import Comments from "./pages/Comments";
 import List from "./pages/List";
 import Tags from "./pages/Tags";
-import Login from "./pages/Login";
 
 
 function App() {

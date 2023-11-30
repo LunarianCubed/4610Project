@@ -36,5 +36,3 @@ export default function List(){
     )
 }
 
-
-export default List;
