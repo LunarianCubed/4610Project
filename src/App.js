@@ -8,6 +8,7 @@ import Comments from "./pages/Comments";
 import List from "./pages/List";
 import Tags from "./pages/Tags";
 import Search from "./pages/Search";
+import NotFound from "./pages/404";
 
 function App() {
     let component
@@ -18,7 +19,7 @@ function App() {
         case"/Tags":
             component = <Tags />
             break
-        case"/List":
+        case"/ArticleList":
             component = <List />
             break
         case"/Login":
@@ -30,6 +31,8 @@ function App() {
         case"/Comments":
             component = <Comments />
             break
+        default:
+            component = <NotFound />
     }
 
     return (

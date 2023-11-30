@@ -3,7 +3,7 @@ export default function NavBar(){
     return( <nav className="nav">
         <a href = "/" className="Home">🌕^3</a>
         <ul>
-            <CustomLink href="/Article List">Article List</CustomLink>
+            <CustomLink href="/ArticleList">Article List</CustomLink>
             <CustomLink href="/Tags">Tags</CustomLink>
             <CustomLink href="/Search">Search</CustomLink>
             <CustomLink href="/Comments">Comments</CustomLink>

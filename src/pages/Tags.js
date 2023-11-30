@@ -23,7 +23,7 @@ export default function Tags(){
 
     return (
         <div>
-            <h2>All Articles</h2>
+            <h2>All Tags</h2>
             <ul>
                 {articles.map((article, index) => (
                     <li key={index}>
