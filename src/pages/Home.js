@@ -28,8 +28,8 @@ export default function Home(){
             <div>
                 <pre>
                 <React.Fragment>{L}</React.Fragment>
-                </pre>
                 <Cube />
+                </pre>
             </div>
         </div>
     )

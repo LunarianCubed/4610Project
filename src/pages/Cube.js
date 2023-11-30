@@ -107,7 +107,7 @@ function Cube(){
     }, []);
 
     return(
-        <pre ref={output}></pre>
+        <React.Fragment>{output}</React.Fragment>
     )
 }
 
