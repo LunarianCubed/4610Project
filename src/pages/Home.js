@@ -5,10 +5,8 @@ import Cube from './Cube.js';
 
 export default function Home(){
     return (
-    <div className = "Home">
-        <div className = "App">
-            <body>
-            <pre>"
+        <div className = "Home">
+            <pre>
                 LLLLLLLLLLL                                                                                     iiii                                            ^^^        333333333333333b\n
                 L:::::::::L                                                                                    i::::i                                          ^:::^      3:::::::::::::::33\n
                 L:::::::::L                                                                                     iiii                                          ^:::::^     3::::::33333::::::3\n
@@ -25,12 +23,9 @@ export default function Home(){
                 L::::::::::::::::::::::L u:::::::::::::::un::::n    n::::na:::::aaaa::::::a r:::::r           i::::::ia:::::aaaa::::::a  n::::n    n::::n                 3::::::33333::::::3\n
                 L::::::::::::::::::::::L  uu::::::::uu:::un::::n    n::::n a::::::::::aa:::ar:::::r           i::::::i a::::::::::aa:::a n::::n    n::::n                 3:::::::::::::::33\n
                 LLLLLLLLLLLLLLLLLLLLLLLL    uuuuuuuu  uuuunnnnnn    nnnnnn  aaaaaaaaaa  aaaarrrrrrr           iiiiiiii  aaaaaaaaaa  aaaa nnnnnn    nnnnnn                  333333333333333\n
-                "
             </pre>
-            {Cube()}
-            </body>
+            <Cube />
         </div>
-    </div>
     )
 }
 
