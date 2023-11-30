@@ -33,7 +33,7 @@ db.serialize(() =>{
                                                article_id INTEGER,
                                                content TEXT,
                                                FOREIGN KEY(user_id) REFERENCES users(id),
-                                               FOREIGN KEY(article_id) REFERENCES articles(id),
+                                               FOREIGN KEY(article_id) REFERENCES articles(id)
         );
     `);
     db.run(`
@@ -47,7 +47,7 @@ db.serialize(() =>{
                                                    article_id INTEGER,
                                                    tag_id INTEGER,
                                                    FOREIGN KEY(article_id) REFERENCES articles(id),
-                                                   FOREIGN KEY(tag_id) REFERENCES tags(id),
+                                                   FOREIGN KEY(tag_id) REFERENCES tags(id)
         );
     `);
 });
@@ -59,7 +59,7 @@ app.post("/register", (req,res) => {
     const password = req.body.password;
 
     db.run(
-        "INSERT INTO users (id, name, email, password) VALUES (?, ?, ?, ?)",
+        "INSERT INTO users (name, email, password) VALUES (?, ?, ?)",
         [name, email, password],
         (err) => {
             if (err) {
