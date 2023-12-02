@@ -1,59 +1,9 @@
 
 .Search {
-    background: #120a5d;
-    position: relative;
-    margin-top: 1rem;
-    padding: 4rem;
-    border-radius: 10px;
-    width: 50%;
-    position: relative;
-    left: 25%;
-}
-
-.AppointmentWrapper h1{
-    color: white;
-}
-
-.list{
-    color: white;
-    background-color: Grey;
-    border-radius: 20px;
-}
-
-.AppointmentForm {
-    width: 100%;
-    background-color: white;
-    border-radius: 10px;
-}
-
-.appointment-input {
-    outline: none;
-    background: transparent;
-    border: 1px solid Black;
-    padding: .5rem 2rem;
-    margin-top: 2rem;
-    margin-bottom: 4rem;
-    width: 300px;
-}
-
-.appointment-input::placeholder {
-    color: black;
-}
-
-.appointment-btn {
-    background: #8758ff;
-    color: #fff;
-    border: none;
-    padding: 0.55rem;
-    cursor: pointer;
-
-}
-
-.appointment {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #120d69;
+    background-color: white;
     color: #fff;
     padding: 0.75rem 1rem;
     border-radius: 5px;
@@ -61,6 +11,31 @@
     cursor: pointer;
 }
 
+.Search-Wrapper h1{
+    color: white;
+}
+
+.SearchForm {
+    width: 100%;
+    background-color: #10196e;
+    border-radius: 10px;
+}
+
+.search-input {
+    outline: none;
+    background: transparent;
+    border: 1px solid #a81379;
+    padding: .5rem 2rem;
+    margin-top: 2rem;
+    margin-bottom: 4rem;
+    width: 300px;
+}
+
+.list{
+    color: white;
+    background-color: Grey;
+    border-radius: 20px;
+}
 
 .fa-trash {
     margin-left: 0.75rem;

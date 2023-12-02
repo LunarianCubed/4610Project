@@ -7,7 +7,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-const db = new sql.Database("./Bolg.db");
+const db = new sql.Database("./Blog.db");
 
 db.serialize(() =>{
     db.run(`

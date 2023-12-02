@@ -13,7 +13,7 @@ function App() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const[loginStatus, setLoginStatus] = useState("");
+    const[loginStatus, setLoginStatus] = useState(false);
 
 
     const register = () => {
