@@ -1,6 +1,4 @@
-import './Home.css';
 import React from 'react';
-import './alignPages.css';
 import Cube from './Cube.js';
 
 export default function NotFound(){
