@@ -1,6 +1,4 @@
 import React,{ useState, useEffect} from 'react';
-import './alignPages.css';
-import './Tags.css';
 import axios from "axios";
 
 

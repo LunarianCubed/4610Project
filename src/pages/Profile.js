@@ -1,15 +1,11 @@
 import React, from 'react';
-import './alignPages.css';
-import './Profile.css';
 import axios from "axios";
 
 
 
 export default function Profile(){
+    const {id} = JSON.parse(sessionStorage.getItem("user"))
     return (
-
-
-
         <div className="Profile">
             <h1>Profile</h1>
             <div className="form-box">

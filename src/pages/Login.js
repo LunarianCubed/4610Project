@@ -1,7 +1,5 @@
 import React, {useState} from "react";
 import Axios from 'axios';
-import './Login.css';
-import './alignPages.css';
 
 
 function App() {
@@ -13,7 +11,6 @@ function App() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const[loginStatus, setLoginStatus] = useState(false);
 
 
     const register = () => {
@@ -22,8 +19,11 @@ function App() {
             email: emailReg,
             password: passwordReg,
         }).then((response) => {
-            console.log(response);
-            window.location.assign("/Profile")
+            if (response.status === 200) {
+                window.alert("User registered successfully")
+            } else {
+                window.alert("This email has already been registered")
+            }
         });
     }
 
@@ -32,14 +32,10 @@ function App() {
             email: email,
             password: password,
         }).then((response) => {
-            if (response.data.message){
-                setLoginStatus(response.data.message)
-
+            if (response.data.message) {
+                window.alert("Wrong email or password!")
             } else {
-                setLoginStatus(response.data[0].email)
-                sessionStorage.setItem("user", response.data[0].email)
-                console.log(response.data)
-                window.location.assign("/Comments")
+                sessionStorage.setItem("user", response.data[0].id)
             }
         });
     }

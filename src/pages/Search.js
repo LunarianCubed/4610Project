@@ -1,7 +1,5 @@
 import React, {useState} from 'react';
 import axios from "axios";
-import './alignPages.css';
-import './Search.css';
 import SearchResults from "./SearchResults";
 
 

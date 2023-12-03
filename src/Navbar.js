@@ -1,4 +1,3 @@
-import "./App.css";
 export default function NavBar(){
     return( <nav className="nav">
         <a href = "/" className="Home">🌕^3</a>

@@ -1,4 +1,3 @@
-import './App.css';
 import React from 'react';
 
 import Navbar from "./Navbar";
@@ -8,6 +7,7 @@ import Comments from "./pages/Comments";
 import List from "./pages/List";
 import Tags from "./pages/Tags";
 import Search from "./pages/Search";
+import Profile from "./pages/Profile";
 import NotFound from "./pages/404";
 
 function App() {
@@ -30,6 +30,9 @@ function App() {
             break
         case"/Comments":
             component = <Comments />
+            break
+        case"/Profile":
+            component = <Profile />
             break
         default:
             component = <NotFound />

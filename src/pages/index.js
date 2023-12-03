@@ -1,5 +1,4 @@
 import {React} from 'react';
-import './alignPages.css'
 
 const Home = () => {
     return (
