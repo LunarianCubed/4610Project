@@ -27,6 +27,11 @@ export default function Home(){
                 <pre>
                 <React.Fragment>{L}</React.Fragment>
                 </pre>
+                <div>
+                    <h3>
+                        Don't call this tatty, it's classic.
+                    </h3>
+                </div>
                 {/*<Cube />*/}
             </div>
         </div>

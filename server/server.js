@@ -1,6 +1,9 @@
 const express = require("express");
 const sql = require("sqlite3").verbose();
 const cors = require("cors");
+const fs = require('fs');
+const path = require('path');
+const articlesFolder = path.join(__dirname, 'articles');
 
 const app = express();
 
@@ -23,7 +26,7 @@ db.serialize(() =>{
                                                id INTEGER PRIMARY KEY AUTOINCREMENT,
                                                date DATE,
                                                title TEXT,
-                                               content TEXT
+                                               path TEXT
         );
     `);
     db.run(`
@@ -129,18 +132,6 @@ app.get("/articles", (req, res) => {
 });
 
 
-app.get("/articles/:id", (req, res) => {
-    const { id } = req.params;
-
-    db.get("SELECT * FROM articles WHERE id = ?", [id], (err, row) => {
-        if (err) {
-            res.status(500).json({ error: err.message });
-            return;
-        }
-
-        res.json({ data: row });
-    });
-});
 
 app.get("/TagList", (req, res) => {
     db.get("SELECT * FROM tags", (err, row) => {
@@ -153,11 +144,11 @@ app.get("/TagList", (req, res) => {
     });
 });
 
-app.get("/articles/:id/comments", (req, res) => {
+app.get("/articles/:title/comments", (req, res) => {
     const { id } = req.params;
 
     db.all(
-        "SELECT * FROM comments WHERE article_id = ? ORDER BY id DESC",
+        "SELECT * FROM comments WHERE title = ? ORDER BY id DESC",
         [id],
         (err, rows) => {
             if (err) {
@@ -190,6 +181,21 @@ app.get("/comments/:user_id", (req, res) => {
 });
 
 
+app.get('/articles/:title', (req, res) => {
+    const requestedTitle = req.params.title;
+    const filePath = path.join(articlesFolder, `${requestedTitle}.txt`);
+
+    fs.readFile(filePath, 'utf8', (err, data) => {
+        if (err) {
+            res.status(404).send('Article not found');
+        } else {
+            res.send(data);
+        }
+    });
+});
+
+
+
 app.listen(3001, () => {
-    console.log("running server");
+    console.log("running server on 3001");
 })
