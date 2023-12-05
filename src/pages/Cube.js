@@ -1,7 +1,7 @@
 import React, {useEffect, useRef} from 'react';
 
 function Cube() {
-    const output = useRef(null)
+    let output = useRef(null)
 
     let A = 0, B = 0, C = 0;
 
@@ -95,7 +95,6 @@ function Cube() {
         B += 0.05;
         C += 0.01;
 
-        // Delay for 16 milliseconds (equivalent to ~60 frames per second)
         await delay(16);
 
         getCube();

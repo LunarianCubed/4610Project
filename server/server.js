@@ -4,6 +4,7 @@ const cors = require("cors");
 const fs = require('fs');
 const path = require('path');
 const articlesFolder = path.join(__dirname, 'articles');
+const interval = 1000 * 60 * 60 * 24;
 
 const app = express();
 
@@ -79,7 +80,7 @@ app.post("/login", (req ,res) =>{
     const email = req.body.email;
     const password = req.body.password;
 
-    db.run("SELECT id FROM users Where email = ? AND password = ?", [email, password],
+    db.run("SELECT id, email, name FROM users Where email = ? AND password = ?", [email, password],
         (err, result) => {
             if (err){
                 res.status(500).send({err: err});
@@ -92,25 +93,56 @@ app.post("/login", (req ,res) =>{
         });
 });
 
-app.get("/", (req, res) => {
-    const { q } = req.query;
 
-    const keys = ["first_name", "last_name", "email"];
+const checkAndAddArticles = () => {
+    const articlesFolder = path.join(__dirname, 'articles');
 
-    const search = (data) => {
-        return data.filter((item) =>
-            keys.some((key) => item[key].toLowerCase().includes(q))
-        );
-    };
+    fs.readdir(articlesFolder, (err, files) => {
+        if (err) {
+            console.error('Error reading articles folder: ', err);
+            return;
+        }
 
-    q ? res.json(search(Users).slice(0, 10)) : res.json(Users.slice(0, 10));
-});
+        files.forEach((file) => {
+            const filePath = path.join(articlesFolder, file);
+            const stats = fs.statSync(filePath);
+            const title = path.parse(file).name;
+
+            db.get('SELECT COUNT(*) AS count FROM articles WHERE title = ?', [title], (err, row) => {
+                if (err) {
+                    console.error('Error checking existing article:', err);
+                } else {
+                    const count = row.count;
+                    if (count === 0) {
+                        db.run(
+                            'INSERT INTO articles (date, title, path) VALUES (?, ?, ?)',
+                            [stats.birthtime, title, filePath],
+                            (insertErr) => {
+                                if (insertErr) {
+                                    console.error('Error inserting article: ', insertErr);
+                                } else {
+                                    console.log('Article inserted successfully:', title);
+                                }
+                            }
+                        );
+                    } else {
+                        console.log('Article already exists:', title);
+                    }
+                }
+            })
+
+        });
+    });
+};
+
+checkAndAddArticles();
+setInterval(checkAndAddArticles, interval);
 
 app.get("/search", (req, res) => {
     const { q } = req.query;
     const query = `%${q}%`;
 
-    db.all("SELECT * FROM articles WHERE title LIKE ?", [query], (err, rows) => {
+    db.all("SELECT title, id FROM articles WHERE title LIKE ?", [query], (err, rows) => {
         if (err) {
             res.status(500).json({ error: err.message });
             return;
@@ -119,9 +151,24 @@ app.get("/search", (req, res) => {
         res.json({ data: rows });
     });
 });
+app.get("/TagList", (req, res) => {
+    db.all("SELECT id, name FROM tags ORDER BY id",
+        (err, row) => {
+        if (err) {
+            res.status(500).json({ error: err.message });
+            return;
+        }
+
+        // const tagNames = row.map((tag) => tag.name);
+        // res.json({ data: tagNames });
+            res.json({ data: row });
+    });
+});
+
 
 app.get("/articles", (req, res) => {
-    db.all("SELECT title, date FROM articles ORDER BY date DESC", (err, rows) => {
+    db.all("SELECT title, date FROM articles ORDER BY date DESC",
+        (err, rows) => {
         if (err) {
             res.status(500).json({ error: err.message });
             return;
@@ -133,23 +180,12 @@ app.get("/articles", (req, res) => {
 
 
 
-app.get("/TagList", (req, res) => {
-    db.get("SELECT * FROM tags", (err, row) => {
-        if (err) {
-            res.status(500).json({ error: err.message });
-            return;
-        }
-
-        res.json({ data: row });
-    });
-});
-
 app.get("/articles/:title/comments", (req, res) => {
-    const { id } = req.params;
+    const { title } = req.params;
 
     db.all(
         "SELECT * FROM comments WHERE title = ? ORDER BY id DESC",
-        [id],
+        [title],
         (err, rows) => {
             if (err) {
                 res.status(500).json({ error: err.message });
@@ -159,6 +195,43 @@ app.get("/articles/:title/comments", (req, res) => {
             res.json({ data: rows });
         }
     );
+});
+
+app.post('/articles/:title/comments', (req, res) => {
+    const title = req.params.title;
+    const { content } = req.body;
+
+    const articleId = db.get('SELECT id FROM articles WHERE title = ?', [title], (err, row) => {
+        if (err) {
+            res.status(500).json({ error: err.message });
+            return;
+        }
+
+        return row.id;
+    });
+
+    db.run('INSERT INTO comments (article_id, content) VALUES (?, ?)', [articleId, content], (err) => {
+        if (err) {
+            res.status(500).json({ error: err.message });
+            return;
+        }
+
+        res.json({ message: 'Comment added successfully' });
+    });
+});
+
+app.get('/articles/:title', (req, res) => {
+    const requestedTitle = req.params.title;
+    const filePath = path.join(articlesFolder, `${requestedTitle}.txt`);
+
+    fs.readFile(filePath, 'utf8',
+        (err, data) => {
+        if (err) {
+            res.status(404).send('Article not found');
+        } else {
+            res.send(data);
+        }
+    });
 });
 
 
@@ -181,21 +254,9 @@ app.get("/comments/:user_id", (req, res) => {
 });
 
 
-app.get('/articles/:title', (req, res) => {
-    const requestedTitle = req.params.title;
-    const filePath = path.join(articlesFolder, `${requestedTitle}.txt`);
-
-    fs.readFile(filePath, 'utf8', (err, data) => {
-        if (err) {
-            res.status(404).send('Article not found');
-        } else {
-            res.send(data);
-        }
-    });
-});
-
 
 
 app.listen(3001, () => {
     console.log("running server on 3001");
+    console.log(articlesFolder);
 })

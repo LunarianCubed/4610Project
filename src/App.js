@@ -3,12 +3,13 @@ import React from 'react';
 import Navbar from "./Navbar";
 import Login from "./pages/Login";
 import Home from './pages/Home';
-import Comments from "./pages/Comments";
+import UserComents from "./pages/userComents";
 import List from "./pages/List";
 import Tags from "./pages/Tags";
 import Search from "./pages/Search";
-import Profile from "./pages/Profile";
-import NotFound from "./pages/404";
+import NotFound from "./pages/notFound";
+import Article from "./pages/Article";
+import articleComments from "./pages/articleComments";
 
 function App() {
     let component
@@ -16,26 +17,31 @@ function App() {
         case"/":
             component = <Home />
             break
-        case"/Tags":
+        case"/tags":
             component = <Tags />
             break
-        case"/ArticleList":
+        case"/articleList":
             component = <List />
             break
-        case"/Login":
+        case"/login":
             component = <Login />
             break
-        case"/Search":
+        case"/search":
             component = <Search />
             break
-        case"/Comments":
-            component = <Comments />
+        case"/comments":
+            component = <UserComents />
             break
-        case"/Profile":
-            component = <Profile />
-            break
+
         default:
-            component = <NotFound />
+            if(window.location.pathname.startsWith("/article/")) {
+                component = <Article/>
+            }
+            else if(window.location.pathname.startsWith("/Comments/")) {
+                component = <articleComments />
+            }else{
+                component = <NotFound />
+            }
     }
 
     return (

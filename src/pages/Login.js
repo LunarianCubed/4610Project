@@ -10,7 +10,6 @@ function App() {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [loginStatus, setLoginStatus] = useState("");
 
 
 
@@ -34,9 +33,13 @@ function App() {
             password: password,
         }).then((response) => {
             if (response.data.message) {
-                window.alert("Wrong email or password!")
+                window.alert(response.data.message)
             } else {
                 sessionStorage.setItem("user", response.data[0].id)
+                sessionStorage.setItem("email", response.data[0].email)
+                sessionStorage.setItem("name", response.data[0].name)
+                window.alert("Login successfully")
+                window.location.assign("/comments");
             }
         });
     }
@@ -82,7 +85,6 @@ function App() {
                        } } />
                 <button onClick={login}> Login </button>
             </div>
-            <h1>{loginStatus}</h1>
         </div>
 
     );

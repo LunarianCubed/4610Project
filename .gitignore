@@ -1,6 +1,8 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 /server/package-lock.json
+/server/node_modules/
+/server/Blog.db
 package-lock.json
 
 # dependencies
