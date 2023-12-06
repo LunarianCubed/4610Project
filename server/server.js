@@ -167,7 +167,7 @@ app.get("/TagList", (req, res) => {
 
 
 
-pp.get('/tags/:tagName', (req, res) => {
+app.get('/tags/:tagName', (req, res) => {
     const tagName = req.params.tagName;
     console.log("tagname" + tagName);
     const tagid = db.get(`SELECT id FROM tags WHERE name = ?`, [tagName], (err, row) =>{
