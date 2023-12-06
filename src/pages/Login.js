@@ -33,9 +33,9 @@ function App() {
             password: password,
         }).then((response) => {
             if (response.status === 200) {
-                sessionStorage.setItem("user", response.data[0].id)
-                sessionStorage.setItem("email", response.data[0].email)
-                sessionStorage.setItem("name", response.data[0].name)
+                sessionStorage.setItem("user", response.data.id)
+                sessionStorage.setItem("email", response.data.email)
+                sessionStorage.setItem("name", response.data.name)
                 window.alert("Login successfully")
                 window.location.assign("/comments");
             } else {
