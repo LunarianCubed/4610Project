@@ -7,7 +7,7 @@ export default function Profile(){
     const userId = sessionStorage.getItem('user');
     if (!userId) {
         window.alert('You must be logged in');
-        window.location.assign("/login");
+        window.location.assign("/Login");
         return;
     }
 
