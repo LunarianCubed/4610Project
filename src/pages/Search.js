@@ -19,7 +19,7 @@ const SearchPage = () => {
             const response = await axios.get(`http://localhost:3001/search`, {
                 params: {q: searchTerm}
             });
-            setSearchResults(response.data);
+            setSearchResults(response.data.data);
             setError(null);
         } catch (error) {
             console.error('Error:', error);
@@ -48,8 +48,8 @@ const SearchPage = () => {
                     <p>No results found</p>
                 )}
                 <ul>
-                {searchResults.map((article) => (
-                    <li key={article.id}>
+                {searchResults.map((article, index) => (
+                    <li key={index}>
                         <Link to={`/article/${article.title}`}>
                             <h3>{article.title}</h3>
                         </Link>
