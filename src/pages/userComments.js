@@ -4,7 +4,7 @@ import Profile from "./Profile";
 
 
 
-export default function UserComents(){
+export default function UserComments(){
     const [userComments, setUserComments] = useState([]);
     const [error, setError] = useState(null);
 

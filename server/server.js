@@ -166,9 +166,35 @@ app.get("/TagList", (req, res) => {
 });
 
 
+
+pp.get('/tags/:tagName', (req, res) => {
+    const tagName = req.params.tagName;
+    console.log("tagname" + tagName);
+    const tagid = db.get(`SELECT id FROM tags WHERE name = ?`, [tagName], (err, row) =>{
+        if (err) {
+            res.status(500).json({ error: err.message });
+            return;
+        }
+        return row.id; });
+    console.log("tagid" + tagid);
+    db.all("SELECT article_id FROM article_tags WHERE tag_id = ?", [tagid], (err, rows) => {
+        if (err) {
+            res.status(500).json({ error: err.message });
+            return;
+        }
+        console.log("article_id" + rows);
+        db.get("SELECT title FROM articles WHERE id = ?", [rows], (err, row) => {
+            if (err) {
+                res.status(500).json({ error: err.message });
+                return;
+            }
+            res.json({ data: row });
+        });
+    });
+});
+
 app.get("/articles", (req, res) => {
-    db.all("SELECT title, date FROM articles ORDER BY date DESC",
-        (err, rows) => {
+    db.all("SELECT title, date FROM articles ORDER BY date DESC", (err, rows) => {
         if (err) {
             res.status(500).json({ error: err.message });
             return;
@@ -222,6 +248,7 @@ app.post('/articles/:title/comments', (req, res) => {
 
 app.get('/articles/:title', (req, res) => {
     const requestedTitle = req.params.title;
+    console.log(requestedTitle)
     const filePath = path.join(articlesFolder, `${requestedTitle}.txt`);
 
     fs.readFile(filePath, 'utf8',
@@ -230,6 +257,7 @@ app.get('/articles/:title', (req, res) => {
             res.status(404).send('Article not found');
         } else {
             res.send(data);
+            console.log(data)
         }
     });
 });

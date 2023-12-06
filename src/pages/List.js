@@ -32,7 +32,7 @@ export default function List(){
                 {articles.map((article, index) => (
                     <li key={index}>
                         <BrowserRouter>
-                        <Link to={`/article/${article.title}`}>
+                        <Link to={`/Article/${article.title}`}>
                             <h3>{article.title}</h3>
                         </Link></BrowserRouter>
                         <p>Date: {new Date(article.date).toLocaleDateString()}</p>

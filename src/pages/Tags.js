@@ -34,7 +34,7 @@ export default function Tags(){
             <ul>
                 {tags.map((tag, index) => (
                     <li key={index}>
-                            <Link to={`/Tags/${tag.name}`}>
+                            <Link to={`/Tag/${tag.name}`}>
                                 <h3>{tag.name}</h3>
                             </Link>
                     </li>

@@ -2,11 +2,11 @@ export default function NavBar(){
     return( <nav className="nav">
         <a href = "/" className="Home">🌕^3</a>
         <ul>
-            <CustomLink href="/articleList">Article List</CustomLink>
-            <CustomLink href="/tags">Tags</CustomLink>
-            <CustomLink href="/search">Search</CustomLink>
-            <CustomLink href="/comments">Comments</CustomLink>
-            <CustomLink href="/login">Login</CustomLink>
+            <CustomLink href="/ArticleList">Article List</CustomLink>
+            <CustomLink href="/Tags">Tags</CustomLink>
+            <CustomLink href="/Search">Search</CustomLink>
+            <CustomLink href="/Comments">Comments</CustomLink>
+            <CustomLink href="/Login">Login</CustomLink>
         </ul>
     </nav>
     )

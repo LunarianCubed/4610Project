@@ -3,13 +3,14 @@ import React from 'react';
 import Navbar from "./Navbar";
 import Login from "./pages/Login";
 import Home from './pages/Home';
-import UserComents from "./pages/userComents";
+import UserComments from "./pages/userComments";
 import List from "./pages/List";
 import Tags from "./pages/Tags";
 import Search from "./pages/Search";
 import NotFound from "./pages/notFound";
 import Article from "./pages/Article";
 import articleComments from "./pages/articleComments";
+import Tagged_articles  from "./pages/tagged_articles";
 
 function App() {
     let component
@@ -17,25 +18,27 @@ function App() {
         case"/":
             component = <Home />
             break
-        case"/tags":
-            component = <Tags />
+        case"/Tags": component = <Tags />
             break
-        case"/articleList":
+        case"/ArticleList":
             component = <List />
             break
-        case"/login":
+        case"/Login":
             component = <Login />
             break
-        case"/search":
+        case"/Search":
             component = <Search />
             break
-        case"/comments":
-            component = <UserComents />
+        case"/Comments":
+            component = <UserComments />
             break
 
         default:
-            if(window.location.pathname.startsWith("/article/")) {
+            if(window.location.pathname.startsWith("/Article/")) {
                 component = <Article/>
+            }
+            else if(window.location.pathname.startsWith("/Tag/")) {
+                component = <Tagged_articles />
             }
             else if(window.location.pathname.startsWith("/Comments/")) {
                 component = <articleComments />
@@ -53,5 +56,7 @@ function App() {
         </>
     );
 }
+
+
 
 export default App;
