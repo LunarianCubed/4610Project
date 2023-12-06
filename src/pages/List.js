@@ -37,7 +37,7 @@ export default function List(){
                         </Link>
 
                         <Link to={`/Comments/${article.title}`}>
-                            <h3>Comments</h3>
+                            <h4>Comments</h4>
                         </Link></BrowserRouter>
                         <p>Date: {new Date(article.date).toLocaleDateString()}</p>
                     </li>
