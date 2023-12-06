@@ -171,13 +171,15 @@ app.get("/TagList", (req, res) => {
 
 
 
-app.get('/tags/:tagName', (req, res) => {
+app.get('/tags/:tagName', async (req, res) => {
     const tagName = req.params.tagName;
     console.log("tagname" + tagName);
     let tagid = -1;
-    db.get(`SELECT id FROM tags WHERE name = ?`, [tagName], (err, row) =>{
+    await db.get(`SELECT id
+                  FROM tags
+                  WHERE name = ?`, [tagName], (err, row) => {
         if (err) {
-            res.status(500).json({ error: err.message });
+            res.status(500).json({error: err.message});
             return;
         }
         tagid = row.id;
@@ -185,16 +187,16 @@ app.get('/tags/:tagName', (req, res) => {
     console.log("tagid: " + tagid);
     db.all("SELECT article_id FROM article_tags WHERE tag_id = ?", [tagid], (err, rows) => {
         if (err) {
-            res.status(500).json({ error: err.message });
+            res.status(500).json({error: err.message});
             return;
         }
         console.log("article_id" + rows);
         db.get("SELECT title FROM articles WHERE id = ?", [rows], (err, row) => {
             if (err) {
-                res.status(500).json({ error: err.message });
+                res.status(500).json({error: err.message});
                 return;
             }
-            res.json({ data: row });
+            res.json({data: row});
         });
     });
 });

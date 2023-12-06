@@ -22,8 +22,6 @@ const SearchPage = () => {
     //     }
     // };
 
-
-
     const handleSearch = async () => {
         try {
             const response = await axios.get(`/search`, {
