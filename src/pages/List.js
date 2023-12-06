@@ -22,7 +22,7 @@ export default function List(){
         }
         fetchArticles();
 
-    }, []);
+    }, [articles]);
 
     return (
         <div>
@@ -34,6 +34,10 @@ export default function List(){
                         <BrowserRouter>
                         <Link to={`/Article/${article.title}`}>
                             <h3>{article.title}</h3>
+                        </Link>
+
+                        <Link to={`/Comments/${article.title}`}>
+                            <h3>Comments</h3>
                         </Link></BrowserRouter>
                         <p>Date: {new Date(article.date).toLocaleDateString()}</p>
                     </li>

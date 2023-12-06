@@ -17,8 +17,8 @@ export default function Profile(){
         <div className="Profile">
             <h1>Profile</h1>
             <div className="form-box">
-                <h4>UserName:`${username}`</h4>
-                <h4>email:`${email}`</h4>
+                <h4>UserName:{username}</h4>
+                <h4>email:{email}</h4>
             </div>
         </div>
     )

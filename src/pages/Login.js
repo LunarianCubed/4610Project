@@ -32,16 +32,20 @@ function App() {
             email: email,
             password: password,
         }).then((response) => {
-            if (response.status === 200) {
+            if (response.data) {
                 sessionStorage.setItem("user", response.data.id)
                 sessionStorage.setItem("email", response.data.email)
                 sessionStorage.setItem("name", response.data.name)
                 window.alert("Login successfully")
-                window.location.assign("/comments");
+                window.location.assign("/Comments");
             } else {
-                window.alert(response.data.message)
+                window.alert(response.data.message || "Login failed");
             }
+        }).catch((error) => {
+            window.alert("Login failed");
+            console.error("Error logging in: ", error);
         });
+
     }
 
 
