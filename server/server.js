@@ -143,7 +143,7 @@ setInterval(checkAndAddArticles, interval);
 
 app.get("/search", (req, res) => {
     const { q } = req.query;
-    const query = `${q}`;
+    const query = `%${q}%`;
     console.log(query)
 
     db.all("SELECT title, id FROM articles WHERE title LIKE ?", [query], (err, rows) => {
