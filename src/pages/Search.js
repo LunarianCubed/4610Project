@@ -9,21 +9,11 @@ const SearchPage = () => {
     const [searchResults, setSearchResults] = useState([]);
     const [error, setError] = useState(null);
 
-    // const handleSearch = async () => {
-    //     try {
-    //         const response = await fetch(`/search?q=${searchTerm}`);
-    //         if (response.ok) {
-    //             const data = await response.json();
-    //             setSearchResults(data.data);
-    //         } else {
-    //             throw new Error('Failed to fetch data');
-    //         }
-    //     } catch (error) {
-    //         console.error('Error:', error);
-    //     }
-    // };
-
-    const handleSearch = async () => {
+      const handleSearch = async () => {
+          if (!searchTerm.trim()) {
+              setError('Please enter a search term');
+              return;
+          }
         try {
             const response = await axios.get(`http://localhost:3001/search`, {
                 params: {
@@ -35,6 +25,7 @@ const SearchPage = () => {
         } catch (error) {
             console.error('Error:', error);
             setError(error);
+            setSearchResults([]);
         }
     };
 
@@ -53,6 +44,11 @@ const SearchPage = () => {
             <button onClick={handleSearch}>Search</button>
 
             <div>
+                {error && <p>{error}</p>}
+                {searchResults.length === 0 && !error &&(
+                    <p>No results found</p>
+                )}
+                <ul>
                 {searchResults.map((article) => (
                     <li key={article.id}>
                         <Link to={`/article/${article.title}`}>
@@ -60,6 +56,7 @@ const SearchPage = () => {
                         </Link>
                     </li>
                 ))}
+                </ul>
             </div>
         </div>
     );
