@@ -80,7 +80,7 @@ app.post("/login", (req ,res) =>{
     const email = req.body.email;
     const password = req.body.password;
 
-    db.run("SELECT id, email, name FROM users Where email = ? AND password = ?", [email, password],
+    db.get("SELECT id, email, name FROM users Where email = ? AND password = ?", [email, password],
         (err, result) => {
             if (err){
                 res.status(500).send({err: err});
