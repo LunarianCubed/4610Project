@@ -7,6 +7,7 @@ import axios from 'axios';
 const SearchPage = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [searchResults, setSearchResults] = useState([]);
+    const [error, setError] = useState(null);
 
     // const handleSearch = async () => {
     //     try {
@@ -29,14 +30,11 @@ const SearchPage = () => {
                     q: searchTerm
                 }
             });
-
-            if (response.status === 200) {
-                setSearchResults(response.data.data);
-            } else {
-                throw new Error('Failed to fetch data');
-            }
+            setSearchResults(response.data.data);
+            setError(null);
         } catch (error) {
             console.error('Error:', error);
+            setError(error);
         }
     };
 
@@ -58,7 +56,7 @@ const SearchPage = () => {
                 {searchResults.map((article) => (
                     <li key={article.id}>
                         <Link to={`/article/${article.title}`}>
-                        <h3>{article.title}</h3>
+                            <h3>{article.title}</h3>
                         </Link>
                     </li>
                 ))}
