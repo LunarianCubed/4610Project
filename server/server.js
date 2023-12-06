@@ -152,6 +152,7 @@ app.get("/search", (req, res) => {
             return;
         }
 
+        console.log(rows)
         res.json({ data: rows });
     });
 });
