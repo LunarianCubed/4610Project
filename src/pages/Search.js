@@ -10,7 +10,7 @@ const SearchPage = () => {
             const response = await fetch(`/search?q=${searchTerm}`);
             if (response.ok) {
                 const data = await response.json();
-                setSearchResults(data.data.title);
+                setSearchResults(data.data);
             } else {
                 throw new Error('Failed to fetch data');
             }
