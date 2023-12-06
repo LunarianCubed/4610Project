@@ -14,17 +14,16 @@ const SearchPage = () => {
               setError('Please enter a search term');
               return;
           }
+          setSearchResults([]);
         try {
             const response = await axios.get(`http://localhost:3001/search`, {
-                params: {
-                    q: searchTerm
-                }
+                params: {q: searchTerm}
             });
-            setSearchResults(response.data.data);
+            setSearchResults(response.data);
             setError(null);
         } catch (error) {
             console.error('Error:', error);
-            setError(error);
+            setError(error.message);
             setSearchResults([]);
         }
     };
