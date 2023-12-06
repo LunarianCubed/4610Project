@@ -144,6 +144,7 @@ setInterval(checkAndAddArticles, interval);
 app.get("/search", (req, res) => {
     const { q } = req.query;
     const query = `%${q}%`;
+    console.log(query)
 
     db.all("SELECT title, id FROM articles WHERE title LIKE ?", [query], (err, rows) => {
         if (err) {
@@ -173,13 +174,15 @@ app.get("/TagList", (req, res) => {
 app.get('/tags/:tagName', (req, res) => {
     const tagName = req.params.tagName;
     console.log("tagname" + tagName);
-    const tagid = db.get(`SELECT id FROM tags WHERE name = ?`, [tagName], (err, row) =>{
+    let tagid = -1;
+    db.get(`SELECT id FROM tags WHERE name = ?`, [tagName], (err, row) =>{
         if (err) {
             res.status(500).json({ error: err.message });
             return;
         }
-        return row.id; });
-    console.log("tagid" + tagid);
+        tagid = row.id;
+    });
+    console.log("tagid: " + tagid);
     db.all("SELECT article_id FROM article_tags WHERE tag_id = ?", [tagid], (err, rows) => {
         if (err) {
             res.status(500).json({ error: err.message });
