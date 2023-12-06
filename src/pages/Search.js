@@ -24,7 +24,7 @@ const SearchPage = () => {
 
     const handleSearch = async () => {
         try {
-            const response = await axios.get(`/search`, {
+            const response = await axios.get(`http://localhost:3001/search`, {
                 params: {
                     q: searchTerm
                 }
